@@ -1,7 +1,9 @@
 import React from 'react'
 import assets from '../assets/assets'
+import { useNavigate } from 'react-router-dom';
 
 function Hero() {
+  const navigate=useNavigate()
   return (
      <section className="max-w-7xl  mx-auto px-6 py-20">
       <div className="grid  lg:grid-cols-2 gap-9 items-center">
@@ -28,7 +30,7 @@ function Hero() {
               Explore Recipes
             </button>
 
-            <button className="border border-gray-300 px-6 py-3 rounded-lg hover:bg-gray-100">
+            <button onClick={()=>navigate('/addRecipe')} className="border border-gray-300 px-6 py-3 rounded-lg hover:bg-gray-100">
               Share Recipe
             </button>
           </div>

@@ -7,6 +7,8 @@ import hero from './hero.png'
 import close from './close_icon.svg'
 import menu from './menu_icon.svg'
 import login from './login.png'
+import form from './Form.png'
+
 
 
 const assets = {
@@ -18,7 +20,8 @@ const assets = {
     hero,
     close,
     menu,
-    login
+    login,
+    form
 }
 
 export default assets

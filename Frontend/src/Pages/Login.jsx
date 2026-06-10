@@ -1,11 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import assets from '../assets/assets'
 import { MdOutlineEmail } from "react-icons/md";
 import { FaLock } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios'
+
 
 function Login() {
+    const [email,setEmail]=useState(null)
+    const [password,setPassword]=useState(null)
+
      const navigate=useNavigate()
+
+
+     const handleSubmit=async(e)=>{
+       e.preventDefault()
+       await axios.post('http://localhost:5000/login',{email,password})
+       .then((res)=>{
+               localStorage.setItem("token",res.data.token)
+        localStorage.setItem("user",JSON.stringify(res.data.user))
+       })
+       navigate('/')
+
+     }
   return (
     <div className='px-5'>
      <div className='grid grid-cols-2 border rounded-lg shadow-xl object-cover'>
@@ -24,17 +41,17 @@ function Login() {
 
            <div className=' flex border border-gray-300 rounded-xl  h-12 items-center gap-3 px-2 '>
                <MdOutlineEmail className='bg-white-800'/>
-            <input className='  border-0 outline-none focus:ring-0' type='email' placeholder='Email'/>
+            <input onChange={(e)=>setEmail(e.target.value)} className='border-0 outline-none focus:ring-0' type='email' placeholder='Email'/>
          
            </div>
 
           <div className=' flex border border-gray-300 rounded-xl  h-12 items-center  gap-3 px-2'>
             <FaLock/>
-            <input className='border-0 outline-none focus:ring-0' type='text' placeholder='password'/>
+            <input onChange={(e)=>setPassword(e.target.value)} className='border-0 outline-none focus:ring-0' type='text' placeholder='password'/>
          
           </div>
           <div>
-            <button className='border rounded-md bg-green-500 h-12 w-20 hover:bg-orange-500'>Login</button>
+            <button onClick={handleSubmit} className='border rounded-md bg-green-500 h-12 w-20 hover:bg-orange-500'>Login</button>
           </div>
           <div>
             <p>Don't have an account? <span onClick={()=>navigate('/signup')} className='text-orange-400 hover:text-orange-600'>Signup</span></p>

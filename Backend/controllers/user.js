@@ -5,7 +5,7 @@ const jwt=require('jsonwebtoken')
 
 const userSignup=async(req,res)=>{
     const {password,email}=req.body
-    console.log(password,email)
+   
     if(!email || !password){
         return res.json({message:"email and password required"})
     }
@@ -22,6 +22,7 @@ const userSignup=async(req,res)=>{
 }
  const userLogin=async(req,res)=>{
     const {email,password}=req.body
+    console.log(email,password)
     const user= await User.findOne({email})
     const pswdcheck= await bcrypt.compare(password,user.password)
     if(user&&pswdcheck){
