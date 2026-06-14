@@ -1,7 +1,9 @@
 import React from 'react'
 import { useLoaderData, useNavigate } from 'react-router-dom'
 import { FaRegClock } from "react-icons/fa";
-import { FaRegHeart } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
+import axios from 'axios';
 
 function MyRecipe() {
 
@@ -9,13 +11,15 @@ function MyRecipe() {
   const navigate=useNavigate()
   const myRecipes=useLoaderData()
 
+ 
+
   return (
     <div>
        
       <div className=' gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4  h-full  p-3' >
                   {myRecipes.map((item,index)=>{
                      return (
-        <div onClick={()=>navigate(`/recipe/${item._id}`)} key={index} className='border rounded-xl overflow-hidden shadow-sm h-96 flex flex-col bg-white'>
+        <div onDoubleClick={()=>navigate(`/recipe/${item._id}`)}  key={index} className='border rounded-xl overflow-hidden shadow-sm h-96 flex flex-col bg-white'>
           {/* Image Container */}
           <div className='h-3/5 w-full bg-gray-100 overflow-hidden'>
             <img 
@@ -38,8 +42,10 @@ function MyRecipe() {
                 <span>{item.time}</span>
               </div>
               <div className='flex items-center gap-1'>
-                <FaRegHeart className='text-green-500 cursor-pointer hover:scale-110 transition-transform' />
-                <span>28</span>
+               <FaEdit onClick={()=>{navigate(`/edit/${item._id}`)}}/>
+               <MdDelete onClick={()=>{
+                   axios.delete(`http://localhost:5000/recipe/${item._id}`)
+               }}/>
               </div>
             </div>
           </div>

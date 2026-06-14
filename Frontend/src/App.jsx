@@ -9,6 +9,8 @@ import AllRecipes from './Pages/AllRecipes'
 import ViewRecipe from './Pages/ViewRecipe'
 import axios from 'axios'
 import MyRecipe from './Pages/MyRecipe'
+import EditRecipe from './Pages/EditRecipe'
+import Favourites from './Pages/Favourites'
 
 function App() {
 
@@ -37,7 +39,9 @@ const router= createBrowserRouter([
     {path:'/addRecipe',element:<AddRecipe/>},
     {path:'/allrecipe',element:<AllRecipes/>,loader:getAllRcp},
     {path:'/recipe/:id',element:<ViewRecipe/>,loader:getRcp},
-    {path:'/myrecipe',element:<MyRecipe/>,loader:getMyRecipe}
+    {path:'/myrecipe',element:<MyRecipe/>,loader:getMyRecipe},
+    {path:'/edit/:id',element:<EditRecipe/>,loader:getRcp},
+    {path:'/favourites',element:<Favourites/>}
 
   ]}
 

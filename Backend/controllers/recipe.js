@@ -60,8 +60,9 @@ const editRecipe=async(req,res)=>{
     
     
         try{
-           const updatedRecipe= await Recipe.findByIdAndUpdate(req.params.id,req.body,{new:true})
+           const updatedRecipe= await Recipe.findByIdAndUpdate(req.params.id,req.body,{returnDocument:"after"})
         res.json(updatedRecipe)
+       
         }
         catch(err){
             res.status(500).json({error:err.message})

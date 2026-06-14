@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import assets from '../assets/assets'
 import { FaRegClock } from "react-icons/fa";
-import { FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 
 function Featured() {
+
+
+  const[isFvrt,setIsFvrt]=useState()
+   let fvtitems=JSON.parse(localStorage.getItem("fav")) ?? []
+
+
      const navigate=useNavigate()
     const[allRecipe,setAllRecipe]=useState([])
 
@@ -24,7 +30,14 @@ function Featured() {
     getAllRecipe()
    },[])
 
+const handlefvrt=(item)=>{
 
+      const fltItem=fvtitems.filter(res => res._id != item._id)
+       fvtitems=fvtitems.filter(res => res._id === item._id).length===0 ? [...fvtitems,item] : fltItem
+      localStorage.setItem("fav",JSON.stringify(fvtitems))
+      setIsFvrt(pre => !pre)
+
+}
 
   return (
 <div>
@@ -38,7 +51,7 @@ function Featured() {
         <div className=' gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4  h-140  p-3' >
             {allRecipe.slice(0,4).map((item,index)=>{
                return (
-  <div onClick={()=>navigate(`/recipe/${item._id}`)} key={index} className='border rounded-xl overflow-hidden shadow-sm h-96 flex flex-col bg-white'>
+  <div onDoubleClick={()=>navigate(`/recipe/${item._id}`)} key={index} className='border rounded-xl overflow-hidden shadow-sm h-96 flex flex-col bg-white'>
     {/* Image Container */}
     <div className='h-3/5 w-full bg-gray-100 overflow-hidden'>
       <img 
@@ -61,7 +74,9 @@ function Featured() {
           <span>{item.time}</span>
         </div>
         <div className='flex items-center gap-1'>
-          <FaRegHeart className='text-green-500 cursor-pointer hover:scale-110 transition-transform' />
+          <FaHeart  style={{
+            color:(fvtitems.some(res => res._id=== item._id)) ? "green" : ""
+          }} onClick={()=>handlefvrt(item)} className=' cursor-pointer hover:scale-110 transition-transform' />
           <span>28</span>
         </div>
       </div>

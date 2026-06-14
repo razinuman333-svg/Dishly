@@ -1,38 +1,25 @@
-
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { FaRegClock } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
-import axios from 'axios'
-import { useLoaderData, useNavigate } from 'react-router-dom';
 
-function AllRecipes() {
+function Favourites() {
 
-
-  const [isFvrt, setIsFvrt] = useState()
-  let fvtitems = JSON.parse(localStorage.getItem("fav")) ?? []
+ const[isFvrt,setIsFvrt]=useState()
+   let fvtitems=JSON.parse(localStorage.getItem("fav")) ?? []
 
 
-
-  const navigate = useNavigate()
-  const allRecipe = useLoaderData()
-
-
-  const handlefvrt = (item) => {
+   const handlefvrt = (item) => {
     const fltItem = fvtitems.filter(res => res._id != item._id)
     fvtitems = fvtitems.filter(res => res._id === item._id).length === 0 ? [...fvtitems, item] : fltItem
     localStorage.setItem("fav", JSON.stringify(fvtitems))
     setIsFvrt(pre => !pre)
   }
-
-
-
-
+  
   return (
-
     <div>
-
-      <div className=' gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4  h-full  p-3' >
-        {allRecipe.map((item, index) => {
+     
+<div className=' gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4  h-full  p-3' >
+        {fvtitems.map((item, index) => {
           return (
             <div onDoubleClick={() => navigate(`/recipe/${item._id}`)} key={index} className='border rounded-xl overflow-hidden shadow-sm h-96 flex flex-col bg-white'>
               {/* Image Container */}
@@ -79,4 +66,4 @@ function AllRecipes() {
   )
 }
 
-export default AllRecipes
+export default Favourites

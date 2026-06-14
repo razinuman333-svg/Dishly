@@ -25,7 +25,8 @@ function Navbar() {
         <a  onClick={() =>{ setSideBarOpen(false);
                              navigate('/')
         }} className='sm:hover:border-b sm:hover:border-orange-500' >Home</a>
-        <a onClick={() => setSideBarOpen(false)} className='sm:hover:border-b sm:hover:border-orange-500'>Favrouites</a>
+        <a onClick={() =>{ setSideBarOpen(false)
+                            navigate('/favourites') }} className='sm:hover:border-b sm:hover:border-orange-500'>Favrouites</a>
         <a onClick={() => {
           setSideBarOpen(false)
           navigate('/myrecipe')
