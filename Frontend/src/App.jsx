@@ -11,6 +11,7 @@ import axios from 'axios'
 import MyRecipe from './Pages/MyRecipe'
 import EditRecipe from './Pages/EditRecipe'
 import Favourites from './Pages/Favourites'
+import CategoryRcp from './Pages/CategoryRcp'
 
 function App() {
 
@@ -41,7 +42,8 @@ const router= createBrowserRouter([
     {path:'/recipe/:id',element:<ViewRecipe/>,loader:getRcp},
     {path:'/myrecipe',element:<MyRecipe/>,loader:getMyRecipe},
     {path:'/edit/:id',element:<EditRecipe/>,loader:getRcp},
-    {path:'/favourites',element:<Favourites/>}
+    {path:'/favourites',element:<Favourites/>},
+    {path:'/category/:category',element:<CategoryRcp/>,loader:getAllRcp}
 
   ]}
 
