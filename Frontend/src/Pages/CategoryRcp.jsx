@@ -12,7 +12,7 @@ function CategoryRcp() {
     const {category}=useParams()
     const allRecipe=useLoaderData()
     const ctgRcps=allRecipe.filter(item => item.category === category)
-    console.log(ctgRcps)
+    
 
 const handlefvrt = (item) => {
     const fltItem = fvtitems.filter(res => res._id != item._id)
@@ -42,6 +42,10 @@ const handlefvrt = (item) => {
                    <div className='p-4 flex flex-col justify-between flex-grow bg-orange-500  hover:bg-orange-700 text-white'>
                      <div>
                        <h1 className='text-lg font-semibold tracking-wide truncate'>{item.title}</h1>
+                       <div className='flex justify-between'>
+                    <h2>By : {item.createdBy?.name}</h2>
+                    <img className='w-9 h-9 rounded-full object-cover border-2 border-white shadow-sm' src={`http://localhost:5000/userImg/${item.createdBy?.coverImage}`}/>
+                  </div>
                      </div>
      
                      {/* Icons / Details Row */}

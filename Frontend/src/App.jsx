@@ -29,7 +29,7 @@ function App() {
   const getMyRecipe=async()=>{
         let user= await JSON.parse(localStorage.getItem("user"))
       let AllRcps= await getAllRcp()
-     return AllRcps.filter(item=>item.createdBy===user._id)
+     return AllRcps.filter(item=>item.createdBy?._id===user._id)
   }
 
 

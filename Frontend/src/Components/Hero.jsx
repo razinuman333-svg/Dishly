@@ -26,7 +26,7 @@ function Hero() {
           </p>
 
           <div className="mt-8 flex gap-4">
-            <button className="bg-green-700 text-white px-6 py-3 rounded-lg hover:bg-green-800">
+            <button onClick={()=>navigate('/allrecipe')} className="bg-green-700 text-white px-6 py-3 rounded-lg hover:bg-green-800">
               Explore Recipes
             </button>
 

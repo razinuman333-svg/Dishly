@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
 
 const getAllRecipes = async(req, res) => {
     try{
-        const allRecipes= await Recipe.find()
+        const allRecipes= await Recipe.find().populate("createdBy","name coverImage")
         res.json(allRecipes)
     }
     catch(err){

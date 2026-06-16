@@ -10,7 +10,7 @@ function MyRecipe() {
 
   const navigate=useNavigate()
   const myRecipes=useLoaderData()
-
+console.log(myRecipes)
  
 
   return (
