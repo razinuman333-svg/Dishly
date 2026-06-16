@@ -2,16 +2,30 @@
 const User=require('../models/user')
 const bcrypt=require('bcrypt')
 const jwt=require('jsonwebtoken')
+const multer = require('multer')
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, './public/userImg')
+    },
+    filename: function (req, file, cb) {
+      const filename = Date.now() + '-' + file.fieldname
+      cb(null, filename)
+    }
+  })
+  
+  const dp = multer({ storage: storage })
+
 
 const userSignup=async(req,res)=>{
-    const {password,email}=req.body
+    const {password,email,name}=req.body
    
-    if(!email || !password){
-        return res.json({message:"email and password required"})
+    if(!email || !password || !name){
+        return res.json({message:"email,name and password required"})
     }
     const hashpw= await bcrypt.hash(password,10)
     const userdtl=await User.create({
-        email,password:hashpw
+       name, email,password:hashpw
 
     })
     const token = await jwt.sign({email,id:userdtl._id},process.env.SECRET_KEY)
@@ -52,4 +66,19 @@ const userSignup=async(req,res)=>{
 
 
  }
-module.exports={userSignup,userLogin,findUser}
+
+
+ const editUser=async(req,res)=>{
+    const updateData={
+        name:req.body.name,
+        email:req.body.email
+    }
+    if(req.file){
+        updateData.coverImage=req.file.filename
+    }
+      const updatedUser= await User.findByIdAndUpdate(req.params.id,updateData,{returnDocument:"after"})
+        res.json(updatedUser)
+ }
+
+ 
+module.exports={userSignup,userLogin,findUser,editUser,dp}

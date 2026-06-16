@@ -102,7 +102,7 @@ const {id} = useParams()
         />
 
         <input
-          value={file}
+         
           type="file"
           name="file"
           onChange={(e) => setFile(e.target.files[0])}

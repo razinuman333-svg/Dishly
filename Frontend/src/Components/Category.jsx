@@ -25,9 +25,9 @@ function Category() {
             <BiSolidDish className='text-red-700'/>
             <span>Dinner</span>
         </div>
-        <div onClick={()=>navigate('/category/Deserts')} className='rounded-lg  flex flex-col items-center justify-center border border-gray-500 hover:bg-green-500'>
+        <div onClick={()=>navigate('/category/Dessert')} className='rounded-lg  flex flex-col items-center justify-center border border-gray-500 hover:bg-green-500'>
          <LuIceCreamBowl className='text-pink-600'/>
-         <span>Deserts</span>
+         <span>Dessert</span>
         </div>
         <div onClick={()=>navigate('/category/Snaks')} className='rounded-lg  flex flex-col items-center justify-center border border-gray-500 hover:bg-green-500'>
             <IoFastFoodOutline className='text-yellow-600'/>
@@ -37,7 +37,7 @@ function Category() {
             <FaLeaf className='text-emerald-600'/>
             <span>Veg</span>
         </div>
-        <div onClick={()=>navigate('/category/Drinks')} className='rounded-lg  flex flex-col items-center justify-center border border-gray-500 hover:bg-green-500'>
+        <div onClick={()=>navigate('/category/Drink')} className='rounded-lg  flex flex-col items-center justify-center border border-gray-500 hover:bg-green-500'>
             <RiDrinks2Line className='text-teal-600'/>
             <span>Drinks</span>
 

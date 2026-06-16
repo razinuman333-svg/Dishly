@@ -3,18 +3,20 @@ import assets from '../assets/assets'
 import { MdOutlineEmail } from "react-icons/md";
 import { FaLock } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
+import { IoPersonSharp } from "react-icons/io5";
 import axios from 'axios'
 
 function Signup() {
 
   const [email,setEmail]=useState(null)
   const [password,setPassword]=useState(null)
+  const [name,setName]=useState(null)
 
   const navigate=useNavigate()
 
   const handleSubmit=async(e)=>{
     e.preventDefault()
-   await axios.post('http://localhost:5000/signup',{email,password})
+   await axios.post('http://localhost:5000/signup',{email,password,name})
      .then((res)=>{
       localStorage.setItem("token",res.data.token)
       localStorage.setItem('user',JSON.stringify(res.data.user))
@@ -40,6 +42,14 @@ function Signup() {
         </div>
         {/* input fields*/}
         <div className='flex flex-col gap-4  h-60 items-center w-96 pt-4'>
+
+
+      <div className=' flex border border-gray-300 rounded-xl  h-12 items-center gap-3 px-2 '>
+               <IoPersonSharp className='bg-white-800'/>
+            <input onChange={(e)=>setName(e.target.value)} className='  border-0 outline-none focus:ring-0' type='text' placeholder='Name'/>
+         
+           </div>
+
 
            <div className=' flex border border-gray-300 rounded-xl  h-12 items-center gap-3 px-2 '>
                <MdOutlineEmail className='bg-white-800'/>

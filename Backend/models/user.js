@@ -9,6 +9,13 @@ const userSchema = mongoose.Schema({
     password:{
        type:String,
        required:true
+    },
+    name:{
+        type:String,
+        required:true
+    },
+    coverImage:{
+        type:String
     }
 })
 const usersch=mongoose.model("User",userSchema)

@@ -1,10 +1,11 @@
 import React,{useState } from 'react'
-import { useLoaderData, useParams } from 'react-router-dom'
+import { useLoaderData, useNavigate, useParams } from 'react-router-dom'
 import { FaRegClock } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 
 
 function CategoryRcp() {
+  const navigate = useNavigate()
     const [isFvrt, setIsFvrt] = useState()
       let fvtitems = JSON.parse(localStorage.getItem("fav")) ?? []
     

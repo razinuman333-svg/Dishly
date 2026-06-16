@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import assets from '../assets/assets'
 import axios from 'axios' 
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 function AddRecipe() {
  const navigate=useNavigate()
@@ -21,7 +22,10 @@ function AddRecipe() {
             "Content-Type":"multipart/form-data",
             'authorization':'bearer '+localStorage.getItem("token")
           }
-        }).then(()=>navigate('/'))
+        }).then(()=>{
+          navigate('/')
+          toast.success("Recipe added successfully!")
+        })
 
 
   }

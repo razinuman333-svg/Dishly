@@ -12,6 +12,12 @@ import MyRecipe from './Pages/MyRecipe'
 import EditRecipe from './Pages/EditRecipe'
 import Favourites from './Pages/Favourites'
 import CategoryRcp from './Pages/CategoryRcp'
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import ProfilePic from './Pages/ProfilePic'
+
+
+
 
 function App() {
 
@@ -43,7 +49,8 @@ const router= createBrowserRouter([
     {path:'/myrecipe',element:<MyRecipe/>,loader:getMyRecipe},
     {path:'/edit/:id',element:<EditRecipe/>,loader:getRcp},
     {path:'/favourites',element:<Favourites/>},
-    {path:'/category/:category',element:<CategoryRcp/>,loader:getAllRcp}
+    {path:'/category/:category',element:<CategoryRcp/>,loader:getAllRcp},
+    {path:'/addprofile/:id',element:<ProfilePic/>}
 
   ]}
 
@@ -52,6 +59,7 @@ const router= createBrowserRouter([
   return (
     <div>
       <RouterProvider router={router}></RouterProvider>
+       <ToastContainer position="top-right" autoClose={2000} />
     </div>
   )
 }
