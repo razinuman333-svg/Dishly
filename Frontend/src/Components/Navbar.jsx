@@ -31,11 +31,11 @@ function Navbar() {
         }} className='sm:hover:border-b sm:hover:border-orange-500' >Home</a>
         <a onClick={() => {
           setSideBarOpen(false)
-          navigate('/favourites')
+         {userdtls?  navigate('/favourites') : navigate('/signup')}
         }} className='sm:hover:border-b sm:hover:border-orange-500'>Favrouites</a>
         <a onClick={() => {
           setSideBarOpen(false)
-          navigate('/myrecipe')
+           {userdtls?  navigate('/myrecipe') : navigate('/signup')}
         }} className='sm:hover:border-b sm:hover:border-orange-500'>MyRecipe</a>
         <a onClick={() => setSideBarOpen(false)} className='sm:hover:border-b sm:hover:border-orange-500'>Contact</a>
 
